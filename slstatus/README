@@ -1,0 +1,5 @@
+lightweight slstatus configuration:
+displays battery%, wifi connection and time
+default refresh: 20s
+font required: ttf-font-awesome
+build: make clean install
