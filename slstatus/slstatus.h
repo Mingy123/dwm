@@ -10,7 +10,7 @@ const char* datetime(const char *fmt) {
 }
 
 int checkCharge() {
-    FILE* f = popen("acpi | grep Discharging | grep unavailable | wc -l", "r");
+    FILE* f = popen("acpi | grep Discharging | grep -v unavailable | wc -l", "r");
     char c;
     fscanf(f, "%c", &c);
     pclose(f);
@@ -20,7 +20,7 @@ int checkCharge() {
 const char* battery_perc() {
 	char *p;
 	FILE *fp;
-    char* cmd = "acpi | grep -v Unknown | grep unavailable | grep -o \"[0-9]*%\"";
+    char* cmd = "acpi | grep -v Unknown | grep -v unavailable | grep -o \"[0-9]*%\"";
 
 	if (!(fp = popen(cmd, "r"))) {
 		warn("popen '%s':", cmd);
