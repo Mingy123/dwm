@@ -68,7 +68,6 @@ static const char* brave[] = {"brave", NULL};
 static const char* lockscreen[] = {"/usr/bin/betterlockscreen", "-l", "dim", NULL};
 //static const char* locksuspend[] = {"/usr/bin/betterlockscreen -l dim & /usr/bin/sleep 2 && /usr/bin/loginctl suspend", NULL};
 static const char* pcmanfm[] = {"pcmanfm", NULL};
-static const char* remapKeys[] = {"/home/mingy/scripts/remap.sh", NULL};
 
 static const char* lowerVol[] = {"/usr/bin/amixer", "set", "Master", "5%-", "unmute", NULL};
 static const char* raiseVol[] = {"/usr/bin/amixer", "set", "Master", "5%+", "unmute", NULL};
@@ -84,7 +83,6 @@ static Key keys[] = {
 	/* modifier                 key        function        argument */
 	{ MODKEY,                   XK_p,       spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,         XK_Return,  spawn,          {.v = termcmd } },
-	{ MODKEY,                   XK_b,       togglebar,      {0} },
 	{ MODKEY,                   XK_j,       focusstack,     {.i = +1 } },
 	{ MODKEY,                   XK_k,       focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,         XK_j,       movestack,      {.i = +1 } },
@@ -99,21 +97,19 @@ static Key keys[] = {
 	{ MODKEY,                   XK_t,       setlayout,      {.v = &layouts[0]} }, // tile
 	{ MODKEY,                   XK_f,       setlayout,      {.v = &layouts[1]} }, // floating
 	{ MODKEY,                   XK_m,       setlayout,      {.v = &layouts[2]} }, // monocle
-	{ MODKEY,                   XK_space,   setlayout,      {0} },
-	{ MODKEY|ShiftMask,         XK_space,   togglefloating, {0} },
+	{ MODKEY,                   XK_space,   togglebar,      {0} },
+	{ MODKEY|ShiftMask,         XK_space,   setlayout,      {0} },
 	{ MODKEY,                   XK_0,       view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,         XK_0,       tag,            {.ui = ~0 } },
 	{ MODKEY,                   XK_period,  shiftview,      {.i = +1 } },
 	{ MODKEY,                   XK_comma,   shiftview,      {.i = -1 } },
 	{ MODKEY|ShiftMask,         XK_period,  incnmaster,     {.i = -1 } },
 	{ MODKEY|ShiftMask,         XK_comma,   incnmaster,     {.i = +1 } },
-	{ MODKEY,                   XK_a,       toggleopacity,  {0} },
+	{ MODKEY,                   XK_o,       toggleopacity,  {0} },
 
-	{ MODKEY|ShiftMask,         XK_b,       spawn,          {.v = brave} },
+	{ MODKEY,                   XK_b,       spawn,          {.v = brave} },
 	{ MODKEY,                   XK_e,       spawn,          {.v = pcmanfm} },
-	{ MODKEY,                   XK_r,       spawn,          {.v = remapKeys } },
 	{ ControlMask|ShiftMask,    XK_l,       spawn,          {.v = lockscreen } },
-//	{ MODKEY|ShiftMask,         XK_l,       spawn,          {.v = locksuspend } },
 
 	{ 0,    XF86XK_AudioLowerVolume,          spawn,        {.v = lowerVol} },
 	{ 0,    XF86XK_AudioRaiseVolume,          spawn,        {.v = raiseVol} },

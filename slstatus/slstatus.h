@@ -10,7 +10,7 @@ const char* datetime(const char *fmt) {
 }
 
 int checkCharge() {
-    FILE* f = popen("acpi | grep -v unavailable | wc -l", "r");
+    FILE* f = popen("acpi | grep -v unavailable | grep Discharging | wc -l", "r");
     char c;
     fscanf(f, "%c", &c);
     pclose(f);
