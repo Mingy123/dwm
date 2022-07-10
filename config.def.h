@@ -21,7 +21,7 @@ static const char *colors[][3]      = {
 
 /* fade inactive */
 static const double activeopacity   = 1.0f;     /* Window opacity when it's focused (0 <= opacity <= 1) */
-static const double inactiveopacity = 0.93f;   /* Window opacity when it's inactive (0 <= opacity <= 1) */
+static const double inactiveopacity = 0.95f;   /* Window opacity when it's inactive (0 <= opacity <= 1) */
 static Bool bUseOpacity = True;     /* Starts with opacity on any unfocused windows */
 
 /* tagging */
