@@ -72,10 +72,10 @@ static const char* pcmanfm[] = {"pcmanfm", NULL};
 static const char* lowerVol[] = {"/usr/bin/amixer", "set", "Master", "5%-", "unmute", NULL};
 static const char* raiseVol[] = {"/usr/bin/amixer", "set", "Master", "5%+", "unmute", NULL};
 static const char* muteVol[] = {"/usr/bin/amixer", "set", "Master", "toggle", NULL};
-static const char* lowerBri[] = {"/home/mingy/scripts/bri_down.sh", NULL};
-static const char* raiseBri[] = {"/home/mingy/scripts/bri_up.sh", NULL};
-static const char* lowerRed[] = {"/home/mingy/scripts/red-down.sh", NULL};
-static const char* raiseRed[] = {"/home/mingy/scripts/red-up.sh", NULL};
+static const char* lowerBri[] = {"/scripts/bri_down.sh", NULL};
+static const char* raiseBri[] = {"/scripts/bri_up.sh", NULL};
+static const char* lowerRed[] = {"/scripts/red-down.sh", NULL};
+static const char* raiseRed[] = {"/scripts/red-up.sh", NULL};
 
 #include "movestack.c"
 #include "shiftview.c"
