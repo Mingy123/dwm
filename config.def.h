@@ -80,32 +80,33 @@ static const char* raiseRed[] = {"/scripts/red-up.sh", NULL};
 #include "movestack.c"
 #include "shiftview.c"
 static Key keys[] = {
-	/* modifier                 key        function        argument */
-	{ MODKEY,                   XK_p,       spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,         XK_Return,  spawn,          {.v = termcmd } },
-	{ MODKEY,                   XK_j,       focusstack,     {.i = +1 } },
-	{ MODKEY,                   XK_k,       focusstack,     {.i = -1 } },
-	{ MODKEY|ShiftMask,         XK_j,       movestack,      {.i = +1 } },
-	{ MODKEY|ShiftMask,         XK_k,       movestack,      {.i = -1 } },
-	{ MODKEY,                   XK_h,       setmfact,       {.f = -0.05} },
-	{ MODKEY,                   XK_l,       setmfact,       {.f = +0.05} },
-	{ MODKEY,                   XK_Return,  zoom,           {0} },
-//	{ MODKEY,                   XK_Tab,     view,           {0} },
-	{ MODKEY,                   XK_Tab,     focusstack,     {.i = +1 } },
-	{ MODKEY|ShiftMask,         XK_c,       killclient,     {0} },
-	{ MODKEY,                   XK_q,       killclient,     {0} },
-	{ MODKEY,                   XK_t,       setlayout,      {.v = &layouts[0]} }, // tile
-	{ MODKEY,                   XK_f,       setlayout,      {.v = &layouts[1]} }, // floating
-	{ MODKEY,                   XK_m,       setlayout,      {.v = &layouts[2]} }, // monocle
-	{ MODKEY,                   XK_space,   togglebar,      {0} },
-	{ MODKEY|ShiftMask,         XK_space,   setlayout,      {0} },
-	{ MODKEY,                   XK_0,       view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,         XK_0,       tag,            {.ui = ~0 } },
-	{ MODKEY,                   XK_period,  shiftview,      {.i = +1 } },
-	{ MODKEY,                   XK_comma,   shiftview,      {.i = -1 } },
-	{ MODKEY|ShiftMask,         XK_period,  incnmaster,     {.i = -1 } },
-	{ MODKEY|ShiftMask,         XK_comma,   incnmaster,     {.i = +1 } },
-	{ MODKEY,                   XK_o,       toggleopacity,  {0} },
+	/* modifier                 key             function        argument */
+	{ MODKEY,                   XK_p,           spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,         XK_Return,      spawn,          {.v = termcmd } },
+	{ MODKEY,                   XK_j,           focusstack,     {.i = +1 } },
+	{ MODKEY,                   XK_k,           focusstack,     {.i = -1 } },
+	{ MODKEY|ShiftMask,         XK_j,           movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,         XK_k,           movestack,      {.i = -1 } },
+	{ MODKEY,                   XK_h,           setmfact,       {.f = -0.05} },
+	{ MODKEY,                   XK_l,           setmfact,       {.f = +0.05} },
+	{ MODKEY,                   XK_Return,      zoom,           {0} },
+//	{ MODKEY,                   XK_Tab,         view,           {0} },
+	{ MODKEY,                   XK_Tab,         focusstack,     {.i = +1 } },
+	{ MODKEY|ShiftMask,         XK_c,           killclient,     {0} },
+	{ MODKEY,                   XK_q,           killclient,     {0} },
+	{ MODKEY,                   XK_t,           setlayout,      {.v = &layouts[0]} }, // tile
+	{ MODKEY,                   XK_f,           setlayout,      {.v = &layouts[1]} }, // floating
+	{ MODKEY,                   XK_m,           setlayout,      {.v = &layouts[2]} }, // monocle
+	{ MODKEY,                   XK_space,       togglebar,      {0} },
+	{ MODKEY|ShiftMask,         XK_space,       setlayout,      {0} },
+	{ MODKEY,                   XK_0,           view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,         XK_0,           tag,            {.ui = ~0 } },
+	{ MODKEY,                   XK_period,      shiftview,      {.i = +1 } },
+	{ MODKEY,                   XK_comma,       shiftview,      {.i = -1 } },
+	{ MODKEY|ShiftMask,         XK_period,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,         XK_comma,       incnmaster,     {.i = +1 } },
+	{ MODKEY,                   XK_o,           toggleopacity,  {0} },
+	{ MODKEY|ShiftMask,         XK_BackSpace,   togglefloating, {0} },
 
 	{ MODKEY,                   XK_b,       spawn,          {.v = brave} },
 	{ MODKEY,                   XK_e,       spawn,          {.v = pcmanfm} },
