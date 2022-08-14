@@ -38,7 +38,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.7; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -63,26 +63,20 @@ static const Layout layouts[] = {
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char* termcmd[]  = { "urxvt", NULL };
-static const char* brave[] = {"brave", NULL};
-static const char* lockscreen[] = {"/usr/bin/betterlockscreen", "-l", "dim", NULL};
-//static const char* locksuspend[] = {"/usr/bin/betterlockscreen -l dim & /usr/bin/sleep 2 && /usr/bin/loginctl suspend", NULL};
-static const char* pcmanfm[] = {"pcmanfm", NULL};
+static const char* termcmd[] = {"urxvt", NULL};
 
-static const char* lowerVol[] = {"/usr/bin/amixer", "set", "Master", "5%-", "unmute", NULL};
-static const char* raiseVol[] = {"/usr/bin/amixer", "set", "Master", "5%+", "unmute", NULL};
-static const char* muteVol[] = {"/usr/bin/amixer", "set", "Master", "toggle", NULL};
 static const char* lowerBri[] = {"/scripts/bri_down.sh", NULL};
 static const char* raiseBri[] = {"/scripts/bri_up.sh", NULL};
 static const char* lowerRed[] = {"/scripts/red-down.sh", NULL};
 static const char* raiseRed[] = {"/scripts/red-up.sh", NULL};
+
 
 #include "movestack.c"
 #include "shiftview.c"
 static Key keys[] = {
 	/* modifier                 key             function        argument */
 	{ MODKEY,                   XK_p,           spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,         XK_Return,      spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,         XK_Return,      spawn,          {.v = termcmd} },
 	{ MODKEY,                   XK_j,           focusstack,     {.i = +1 } },
 	{ MODKEY,                   XK_k,           focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,         XK_j,           movestack,      {.i = +1 } },
@@ -108,15 +102,20 @@ static Key keys[] = {
 	{ MODKEY,                   XK_o,           toggleopacity,  {0} },
 	{ MODKEY|ShiftMask,         XK_BackSpace,   togglefloating, {0} },
 
-	{ MODKEY,                   XK_b,       spawn,          {.v = brave} },
-	{ MODKEY,                   XK_e,       spawn,          {.v = pcmanfm} },
-	{ ControlMask|ShiftMask,    XK_l,       spawn,          {.v = lockscreen } },
+	{ 0,                        XK_Print,       spawn,          SHCMD("scrot -o ~/Downloads/scrot.png") },
+	{ ShiftMask,                XK_Print,       spawn,          SHCMD("scrot -u -o ~/Downloads/scrot.png") },
+	{ MODKEY|ShiftMask,         XK_s,           spawn,          SHCMD("scrot -s -i -o ~/Downloads/scrot.png") },
 
-	{ 0,    XF86XK_AudioLowerVolume,          spawn,        {.v = lowerVol} },
-	{ 0,    XF86XK_AudioRaiseVolume,          spawn,        {.v = raiseVol} },
-	{ 0,    XF86XK_AudioMute,                 spawn,        {.v = muteVol} },
-	{ ControlMask, XF86XK_MonBrightnessUp,    spawn,        {.v = raiseBri} },
-	{ ControlMask, XF86XK_MonBrightnessDown,  spawn,        {.v = lowerBri} },
+	{ MODKEY,                   XK_b,           spawn,          SHCMD("brave") },
+	{ MODKEY,                   XK_e,           spawn,          SHCMD("pcmanfm") },
+	{ ControlMask|ShiftMask,    XK_l,           spawn,          SHCMD("betterlockscreen -l dim") },
+	{ MODKEY|ShiftMask,         XK_l,           spawn,          SHCMD("loginctl suspend") },
+
+	{ 0,           XF86XK_AudioLowerVolume,   spawn,        SHCMD("amixer set Master 2%- unmute") },
+	{ 0,           XF86XK_AudioRaiseVolume,   spawn,        SHCMD("amixer set Master 2%+ unmute") },
+	{ 0,           XF86XK_AudioMute,          spawn,        SHCMD("amixer set Master toggle") },
+	{ 0,           XF86XK_MonBrightnessUp,    spawn,        {.v = raiseBri} },
+	{ 0,           XF86XK_MonBrightnessDown,  spawn,        {.v = lowerBri} },
 	{ ShiftMask,   XF86XK_MonBrightnessUp,    spawn,        {.v = raiseRed} },
 	{ ShiftMask,   XF86XK_MonBrightnessDown,  spawn,        {.v = lowerRed} },
 
