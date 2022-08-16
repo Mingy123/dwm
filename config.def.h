@@ -100,7 +100,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,         XK_period,      incnmaster,     {.i = -1 } },
 	{ MODKEY|ShiftMask,         XK_comma,       incnmaster,     {.i = +1 } },
 	{ MODKEY,                   XK_o,           toggleopacity,  {0} },
-	{ MODKEY|ShiftMask,         XK_BackSpace,   togglefloating, {0} },
+	{ MODKEY|ShiftMask,         XK_BackSpace,   maketiled,      {0} },
 
 	{ 0,                        XK_Print,       spawn,          SHCMD("scrot -o ~/Downloads/scrot.png") },
 	{ ShiftMask,                XK_Print,       spawn,          SHCMD("scrot -u -o ~/Downloads/scrot.png") },
