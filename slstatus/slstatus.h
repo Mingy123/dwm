@@ -50,9 +50,9 @@ const char* battery_state() {
 }
 
 const char* wifi() {
-    FILE* f = popen("ip a | grep wlan0 | grep DOWN | wc -l", "r");
+    FILE* f = popen("ip a | grep wlan0 | grep ' UP ' | wc -l", "r");
     char c = getc(f);
     pclose(f);
-    if (c == '0') return "\uf1eb";
+    if (c != '0') return "\uf1eb";
     return "\uf05e";
 }
