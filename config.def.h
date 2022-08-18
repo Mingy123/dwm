@@ -34,6 +34,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Pcmanfm",  NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -111,13 +112,13 @@ static Key keys[] = {
 	{ ControlMask|ShiftMask,    XK_l,           spawn,          SHCMD("betterlockscreen -l dim") },
 	{ MODKEY|ShiftMask,         XK_l,           spawn,          SHCMD("loginctl suspend") },
 
-	{ 0,           XF86XK_AudioLowerVolume,   spawn,        SHCMD("amixer set Master 2%- unmute") },
-	{ 0,           XF86XK_AudioRaiseVolume,   spawn,        SHCMD("amixer set Master 2%+ unmute") },
-	{ 0,           XF86XK_AudioMute,          spawn,        SHCMD("amixer set Master toggle") },
-	{ 0,           XF86XK_MonBrightnessUp,    spawn,        {.v = raiseBri} },
-	{ 0,           XF86XK_MonBrightnessDown,  spawn,        {.v = lowerBri} },
-	{ ShiftMask,   XF86XK_MonBrightnessUp,    spawn,        {.v = raiseRed} },
-	{ ShiftMask,   XF86XK_MonBrightnessDown,  spawn,        {.v = lowerRed} },
+	{ 0,           XF86XK_AudioLowerVolume,     spawn,          SHCMD("amixer set Master 2%- unmute") },
+	{ 0,           XF86XK_AudioRaiseVolume,     spawn,          SHCMD("amixer set Master 2%+ unmute") },
+	{ 0,           XF86XK_AudioMute,            spawn,          SHCMD("amixer set Master toggle") },
+	{ 0,           XF86XK_MonBrightnessUp,      spawn,          {.v = raiseBri} },
+	{ 0,           XF86XK_MonBrightnessDown,    spawn,          {.v = lowerBri} },
+	{ ShiftMask,                XK_F3,          spawn,          {.v = raiseRed} },
+	{ ShiftMask,                XK_F2,          spawn,          {.v = lowerRed} },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
