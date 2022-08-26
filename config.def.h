@@ -25,7 +25,7 @@ static const double inactiveopacity = 0.90f;   /* Window opacity when it's inact
 static Bool bUseOpacity = True;     /* Starts with opacity on any unfocused windows */
 
 /* tagging */
-static const char *tags[] = { "\uf6ad", "\uf1a0", "\uf630", "\uf392", "\uf108", "\uf008", "\uf233", "\uf120", "\uf144" };
+static const char *tags[] = { "\uf6ad", "\uf1a0", "\uf630", "\uf126", "\uf108", "\uf008", "\uf233", "\uf120", "\uf144" };
 
 static const Rule rules[] = {
 	/* xprop(1):
