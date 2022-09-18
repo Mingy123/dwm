@@ -107,16 +107,16 @@ static Key keys[] = {
 
 	{ 0,                        XK_Print,       spawn,          SHCMD("scrot -o ~/Downloads/scrot.png") },
 	{ ShiftMask,                XK_Print,       spawn,          SHCMD("scrot -u -o ~/Downloads/scrot.png") },
-	{ MODKEY|ShiftMask,         XK_s,           spawn,          SHCMD("scrot -s -i -o ~/Downloads/scrot.png") },
+	{ MODKEY|ShiftMask,         XK_s,           spawn,          SHCMD("scrot -s -i -f -o ~/Downloads/scrot.png") },
 
-	{ MODKEY,                   XK_b,           spawn,          SHCMD("brave") },
+	{ MODKEY,                   XK_b,           spawn,          SHCMD("brave &> /dev/null") },
 	{ MODKEY,                   XK_e,           spawn,          SHCMD("pcmanfm") },
 	{ ControlMask|ShiftMask,    XK_l,           spawn,          SHCMD("betterlockscreen -l dim") },
 	{ MODKEY|ShiftMask,         XK_l,           spawn,          SHCMD("loginctl suspend") },
 
-	{ 0,           XF86XK_AudioLowerVolume,     spawn,          SHCMD("amixer set Master 2%- unmute") },
-	{ 0,           XF86XK_AudioRaiseVolume,     spawn,          SHCMD("amixer set Master 2%+ unmute") },
-	{ 0,           XF86XK_AudioMute,            spawn,          SHCMD("amixer set Master toggle") },
+	{ 0,           XF86XK_AudioLowerVolume,     spawn,          SHCMD("amixer set Master 2%- unmute > /dev/null") },
+	{ 0,           XF86XK_AudioRaiseVolume,     spawn,          SHCMD("amixer set Master 2%+ unmute > /dev/null") },
+	{ 0,           XF86XK_AudioMute,            spawn,          SHCMD("amixer set Master toggle > /dev/null") },
 	{ 0,           XF86XK_MonBrightnessUp,      spawn,          {.v = raiseBri} },
 	{ 0,           XF86XK_MonBrightnessDown,    spawn,          {.v = lowerBri} },
 	{ ShiftMask,                XK_F3,          spawn,          {.v = raiseRed} },
