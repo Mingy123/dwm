@@ -9,6 +9,7 @@ const char* datetime(const char *fmt) {
 	return buf;
 }
 
+// 1 - not charging
 int checkCharge() {
     FILE* f = popen("acpi | grep -v unavailable | grep Discharging | wc -l", "r");
     char c;
@@ -42,6 +43,7 @@ const char* battery_state() {
     const char* disp = battery_perc();
     int batt = atoi(disp);
 
+    if (!checkCharge() && batt == 100) return "\uf06d";
     if (!checkCharge() || batt > 80) return "\uf240";
     if (batt > 60) return "\uf241";
     if (batt > 40) return "\uf242";
