@@ -43,8 +43,8 @@ const char* battery_state() {
     const char* disp = battery_perc();
     int batt = atoi(disp);
 
-    if (!checkCharge() && batt == 100) return "\uf06d";
-    if (!checkCharge() || batt > 80) return "\uf240";
+    if (!checkCharge()) return "\uf0eb";
+    if (batt > 80) return "\uf240";
     if (batt > 60) return "\uf241";
     if (batt > 40) return "\uf242";
     if (batt > 20) return "\uf243";
