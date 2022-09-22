@@ -36,6 +36,8 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Pcmanfm",  NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+    { "com.example.mingy.Intro", NULL, NULL, 0,         1,           -1 },
+    { NULL,       NULL,      "hexpicker", 0,            1,           -1 }
 };
 
 /* layout(s) */
@@ -109,6 +111,7 @@ static Key keys[] = {
 	{ ShiftMask,                XK_Print,       spawn,          SHCMD("scrot -u -o ~/Downloads/scrot.png") },
 	{ MODKEY|ShiftMask,         XK_s,           spawn,          SHCMD("scrot -s -i -f -o ~/Downloads/scrot.png") },
 
+	{ MODKEY|ShiftMask,         XK_h,           spawn,          SHCMD("hexpicker") },
 	{ MODKEY,                   XK_b,           spawn,          SHCMD("brave &> /dev/null") },
 	{ MODKEY,                   XK_e,           spawn,          SHCMD("pcmanfm") },
 	{ ControlMask|ShiftMask,    XK_l,           spawn,          SHCMD("betterlockscreen -l dim") },
@@ -121,6 +124,7 @@ static Key keys[] = {
 	{ 0,           XF86XK_MonBrightnessDown,    spawn,          {.v = lowerBri} },
 	{ ShiftMask,                XK_F3,          spawn,          {.v = raiseRed} },
 	{ ShiftMask,                XK_F2,          spawn,          {.v = lowerRed} },
+	{ ShiftMask,                XK_F6,          spawn,          SHCMD("killall mpv") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
