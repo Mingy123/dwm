@@ -25,6 +25,7 @@ static const double inactiveopacity = 0.90f;   /* Window opacity when it's inact
 static Bool bUseOpacity = True;     /* Starts with opacity on any unfocused windows */
 
 /* tagging */
+// fontawesome 6.2: f8ab -> cassette (tag 9)
 static const char *tags[] = { "\uf6ad", "\uf1a0", "\uf630", "\uf126", "\uf108", "\uf008", "\uf233", "\uf120", "\uf144" };
 
 static const Rule rules[] = {
@@ -44,7 +45,8 @@ static const Rule rules[] = {
 static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static int fakefullscreen = 0; // 1 will make windows fullscreen into their tiles
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -88,6 +90,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,         XK_k,           movestack,      {.i = -1 } },
 	{ MODKEY,                   XK_h,           setmfact,       {.f = -0.05} },
 	{ MODKEY,                   XK_l,           setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,         XK_f,           togglelockfs,   {0} },
+	{ MODKEY|ShiftMask,         XK_o,           togglefakefs,   {0} },
 	{ MODKEY,                   XK_Return,      zoom,           {0} },
 //	{ MODKEY,                   XK_Tab,         view,           {0} },
 	{ MODKEY,                   XK_Tab,         focusstack,     {.i = +1 } },
