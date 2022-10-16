@@ -10,12 +10,8 @@ In order to build dwm you need the Xlib header files.
 
 Font - fontawesome
 ------------------
-pacman -S ttf-font-awesome
-to force the use of solid icons, go to /usr/share/fonts/TTF and make changes:
-remove fa-regular entries in fonts.dir and fonts.scale
-remove fa-regular* from directory
-Pro Solid fa6 has been included. Run as root:
-    cp fa6-pro-solid.otf /usr/share/fonts && fc-cache -f
+Necessary fonts have been included. Run as root:
+cp fa6* /usr/share/fonts && fc-cache -f
 
 
 Installation
