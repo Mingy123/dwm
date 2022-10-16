@@ -43,7 +43,7 @@ const char* battery_state() {
     const char* disp = battery_perc();
     int batt = atoi(disp);
 
-    if (!checkCharge()) return "\uf0eb";
+    if (!checkCharge()) return "\uf376";
     if (batt > 80) return "\uf240";
     if (batt > 60) return "\uf241";
     if (batt > 40) return "\uf242";
@@ -56,5 +56,5 @@ const char* wifi() {
     char c = getc(f);
     pclose(f);
     if (c != '0') return "\uf1eb";
-    return "\uf05e";
+    return "\ue2cf";
 }

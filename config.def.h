@@ -26,7 +26,7 @@ static Bool bUseOpacity = True;     /* Starts with opacity on any unfocused wind
 
 /* tagging */
 // fontawesome 6.2: f8ab -> cassette (tag 9)
-static const char *tags[] = { "\uf6ad", "\uf1a0", "\uf630", "\uf126", "\uf108", "\uf008", "\uf233", "\uf120", "\uf144" };
+static const char *tags[] = { "\uf6ad", "\uf1a0", "\uf630", "\uf126", "\uf108", "\uf008", "\uf233", "\uf120", "\uf8ab" };
 
 static const Rule rules[] = {
 	/* xprop(1):
