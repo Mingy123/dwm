@@ -6,7 +6,12 @@ dwm is an extremely fast, small, and dynamic window manager for X.
 Requirements
 ------------
 In order to build dwm you need the Xlib header files.
-Font: ttf-font-awesome
+
+Font: fontawesome
+    pacman -S ttf-font-awesome
+    to force the use of solid icons, go to /usr/share/fonts/TTF and make changes:
+    remove fa-regular entries in fonts.dir and fonts.scale
+    remove fa-regular* from directory
 
 
 Installation
