@@ -33,12 +33,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Pcmanfm",  NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-    { "com.example.mingy.Intro", NULL, NULL, 0,         1,           -1 },
-    { NULL,       NULL,      "hexpicker", 0,            1,           -1 }
+	/* class      instance    title             tags mask     isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,             0,            1,           -1 },
+	{ "Pcmanfm",  NULL,       NULL,             0,            1,           -1 },
+	{ "Firefox",  NULL,       NULL,             1 << 8,       0,           -1 },
+    { NULL,       NULL,      "hexpicker",       0,            1,           -1 },
+    { NULL,       NULL,      "Qml Runtime",     0,            1,           -1 }
 };
 
 /* layout(s) */
@@ -93,6 +93,7 @@ static Key keys[] = {
 	{ MODKEY,                   XK_Return,      zoom,           {0} },
 //	{ MODKEY,                   XK_Tab,         view,           {0} },
 	{ MODKEY,                   XK_Tab,         focusstack,     {.i = +1 } },
+	{ MODKEY|ShiftMask,         XK_Tab,         focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,         XK_c,           killclient,     {0} },
 	{ MODKEY,                   XK_q,           killclient,     {0} },
 	{ MODKEY,                   XK_t,           setlayout,      {.v = &layouts[0]} }, // tile
