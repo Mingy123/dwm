@@ -119,7 +119,7 @@ static Key keys[] = {
 	{ MODKEY,                   XK_c,           spawn,          SHCMD("hexpicker") },
 	{ MODKEY,                   XK_b,           spawn,          SHCMD("brave &> /dev/null") },
 	{ MODKEY,                   XK_e,           spawn,          SHCMD("pcmanfm") },
-	{ ControlMask|ShiftMask,    XK_l,           spawn,          SHCMD("betterlockscreen -l dim") },
+	{ ControlMask|ShiftMask,    XK_l,           spawn,          SHCMD("betterlockscreen -l dimblur") },
 	{ MODKEY|ShiftMask,         XK_l,           spawn,          SHCMD("loginctl suspend") },
 
 	{ 0,           XF86XK_AudioLowerVolume,     spawn,          SHCMD("amixer set Master 2%- unmute > /dev/null") },
