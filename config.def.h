@@ -70,7 +70,7 @@ static const Layout layouts[] = {
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char* termcmd[] = {"urxvt", NULL};
+static const char* termcmd[] = {"terminator", NULL};
 
 static const char* lowerBri[] = {"/scripts/bri_down.sh", NULL};
 static const char* raiseBri[] = {"/scripts/bri_up.sh", NULL};
@@ -84,6 +84,7 @@ static Key keys[] = {
 	/* modifier                 key             function        argument */
 	{ MODKEY,                   XK_p,           spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,         XK_Return,      spawn,          {.v = termcmd} },
+	{ ALTKEY|ShiftMask,         XK_Return,      spawn,          SHCMD("urxvt") },
 	{ MODKEY,                   XK_j,           focusstack,     {.i = +1 } },
 	{ MODKEY,                   XK_k,           focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,         XK_j,           movestack,      {.i = +1 } },
@@ -111,6 +112,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,         XK_BackSpace,   maketiled,      {0} },
 	{ MODKEY,                   XK_r,           togglelockfs,   {0} },
 	{ MODKEY|ShiftMask,         XK_r,           togglefakefs,   {0} },
+
+	{ MODKEY,               XK_bracketleft,     focusmon,       {.i = -1 } },
+	{ MODKEY,               XK_bracketright,    focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,     XK_bracketleft,     tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,     XK_bracketright,    tagmon,         {.i = +1 } },
 
 	{ 0,                        XK_Print,       spawn,          SHCMD("scrot -o ~/Downloads/scrot.png") },
 	{ ShiftMask,                XK_Print,       spawn,          SHCMD("scrot -u -o ~/Downloads/scrot.png") },
