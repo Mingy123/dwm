@@ -113,10 +113,10 @@ static Key keys[] = {
 	{ MODKEY,                   XK_r,           togglelockfs,   {0} },
 	{ MODKEY|ShiftMask,         XK_r,           togglefakefs,   {0} },
 
-	{ MODKEY,               XK_bracketleft,     focusmon,       {.i = -1 } },
-	{ MODKEY,               XK_bracketright,    focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,     XK_bracketleft,     tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,     XK_bracketright,    tagmon,         {.i = +1 } },
+	//{ ALTKEY,                   XK_Tab,         focusmon,       {.i = -1 } },
+	{ ALTKEY,                   XK_Tab,         focusmon,       {.i = +1 } },
+	//{ ALTKEY|ShiftMask,         XK_Tab,         tagmon,         {.i = -1 } },
+	{ ALTKEY|ShiftMask,         XK_Tab,         tagmon,         {.i = +1 } },
 
 	{ 0,                        XK_Print,       spawn,          SHCMD("scrot -o ~/Downloads/scrot.png") },
 	{ ShiftMask,                XK_Print,       spawn,          SHCMD("scrot -u -o ~/Downloads/scrot.png") },
