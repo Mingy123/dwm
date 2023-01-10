@@ -93,6 +93,7 @@ struct Client {
 	int bw, oldbw;
 	unsigned int tags;
 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+    int opaque;
 	Client *next;
 	Client *snext;
 	Monitor *mon;
@@ -178,6 +179,7 @@ static void grabkeys(void);
 static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
+static void lockopacity(const Arg *arg);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
@@ -1011,6 +1013,13 @@ killclient(const Arg *arg)
 }
 
 void
+lockopacity(const Arg *arg) {
+	Client *c = selmon->sel;
+    c->opaque = !(c->opaque);
+    opacity(c, c->opaque ? activeopacity : inactiveopacity);
+}
+
+void
 manage(Window w, XWindowAttributes *wa)
 {
 	Client *c, *t = NULL;
@@ -1198,6 +1207,7 @@ nexttiled(Client *c)
 void
 opacity(Client *c, double opacity)
 {
+    if (c->opaque) return;
 	if(bUseOpacity && opacity > 0 && opacity < 1) {
 		unsigned long real_opacity[] = { opacity * 0xffffffff };
 		XChangeProperty(dpy, c->win, netatom[NetWMWindowsOpacity], XA_CARDINAL,
@@ -1766,8 +1776,10 @@ void
 toggleopacity(const Arg *arg) {
 	bUseOpacity = !bUseOpacity;
 	for (Monitor* m = mons; m; m = m->next)
-		for (Client* c = m->clients; c; c = c->next)
+		for (Client* c = m->clients; c; c = c->next) {
+            c->opaque = 0;
 			opacity(c, (bUseOpacity && c != selmon->sel) ? inactiveopacity : activeopacity);
+        }
 }
 
 void
