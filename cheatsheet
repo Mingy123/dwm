@@ -1,0 +1,47 @@
+idk this seems like a good idea
+here's my notations for modifiers:
+Mod (Windows key) = M
+Shift = S
+Control = C
+Alt = A
+
+Basic functionality
+-------------------
+M-j/k/Tab shifts your focus between windows
+M-h/l moves the separator
+M-Enter sets the currently focused window as master
+M-q closes a window
+M-S-Enter opens a terminal (set terminal in config.def.h)
+
+
+Tags (Workspaces)
+-----------------
+M-number puts you into that tag number
+M-S-number moves that window into that tag
+M-</> moves you left/right
+
+M-A-number swaps the contents of your current tag with that tag
+M-C-number adds that tag into your view
+M-S-C-number adds the window into the tag (yes multiple tags)
+
+
+Misc
+----
+M-p spawns dmenu (app launcher)
+M-Space toggles the status bar
+M-S-j/k moves a window through the layout
+M-t/f/m sets layout to "tiled", "floating" and "monocle"
+M-S-</> changes the number of windows in the left area
+
+M-S-Space sets layout to be the previous one
+M-o hard locks the window to be opaque
+M-S-o toggles inactive transparency
+M-S-Backspace makes a floating window tiled
+M-r allows you to traverse away from fullscreened windows
+M-S-r fake fullscreen, applications are put into fullscreen mode while constrained to their assigned tiling positions
+
+
+Multi monitors
+--------------
+A-Tab moves up one monitor
+A-S-Tab puts the window into the other monitor
