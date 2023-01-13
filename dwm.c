@@ -1016,7 +1016,7 @@ void
 lockopacity(const Arg *arg) {
     Client *c = selmon->sel;
     c->opaque = !(c->opaque);
-    opacity(c, c->opaque ? activeopacity : inactiveopacity);
+    focus(NULL);
 }
 
 void
@@ -1753,9 +1753,13 @@ void togglelockfs (const Arg *arg) {
 }
 
 void togglefakefs (const Arg *arg) {
-    if (fakefullscreen) fakefullscreen = 0;
-    else {
-        if (!selmon->sel->isfullscreen) fakefullscreen = 1;
+    if (fakefullscreen) {
+        fakefullscreen = 0;
+        lockfullscreen = 1;
+    } else {
+        fakefullscreen = 1;
+        lockfullscreen = 0;
+        // TODO: refresh currently fullscreened window to become tiled
     }
 }
 
