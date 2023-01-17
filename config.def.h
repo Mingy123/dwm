@@ -113,6 +113,10 @@ static Key keys[] = {
     { MODKEY,                   XK_r,           togglelockfs,   {0} },
     { MODKEY|ShiftMask,         XK_r,           togglefakefs,   {0} },
 
+    { ALTKEY,                   XK_comma,       focusmon,       {.i = -1 } },
+    { ALTKEY,                   XK_period,      focusmon,       {.i = +1 } },
+    { ALTKEY|ShiftMask,         XK_comma,       tagmon,         {.i = -1 } },
+    { ALTKEY|ShiftMask,         XK_period,      tagmon,         {.i = +1 } },
     { ALTKEY,                   XK_Tab,         focusmon,       {.i = +1 } },
     { ALTKEY|ShiftMask,         XK_Tab,         tagmon,         {.i = +1 } },
 
