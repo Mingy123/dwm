@@ -1015,8 +1015,10 @@ killclient(const Arg *arg)
 void
 lockopacity(const Arg *arg) {
     Client *c = selmon->sel;
-    c->opaque = !(c->opaque);
-    focus(NULL);
+    if (c) {
+        c->opaque = !(c->opaque);
+        focus(NULL);
+    }
 }
 
 void
