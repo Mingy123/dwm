@@ -7,7 +7,7 @@ Alt = A
 
 Basic functionality
 -------------------
-M-j/k/Tab shifts your focus between windows
+M-j/k shifts your focus between windows
 M-h/l moves the separator
 M-Enter sets the currently focused window as master
 M-q closes a window
@@ -19,6 +19,7 @@ Tags (Workspaces)
 M-number puts you into that tag number
 M-S-number moves that window into that tag
 M-</> moves you left/right
+M-Tab jumps to the last selected tag / group of tags
 
 M-A-number swaps the contents of your current tag with that tag
 M-C-number adds that tag into your view

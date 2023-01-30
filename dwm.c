@@ -177,6 +177,7 @@ static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
 static void incnmaster(const Arg *arg);
+static void jumplasttag(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
 static void lockopacity(const Arg *arg);
@@ -968,6 +969,12 @@ incnmaster(const Arg *arg)
     arrange(selmon);
 }
 
+void jumplasttag(const Arg *arg) {
+    selmon->seltags ^= 1;
+    focus(NULL);
+    arrange(selmon);
+}
+
 #ifdef XINERAMA
 static int
 isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
@@ -1692,7 +1699,7 @@ tag(const Arg *arg)
 void
 tagmon(const Arg *arg)
 {
-    if (!selmon->sel || !mons->next)
+    if (!selmon->sel || !mons->next || selmon->sel->isfullscreen)
         return;
     sendmon(selmon->sel, dirtomon(arg->i));
 }
@@ -1809,6 +1816,9 @@ toggleview(const Arg *arg)
     unsigned int newtagset = selmon->tagset[selmon->seltags] ^ (arg->ui & TAGMASK);
 
     if (newtagset) {
+        unsigned int curtags = selmon->tagset[selmon->seltags];
+        if ( (curtags & (curtags - 1)) == 0) // only one tag selected
+            selmon->seltags ^= 1;
     	selmon->tagset[selmon->seltags] = newtagset;
     	focus(NULL);
     	arrange(selmon);
@@ -2210,6 +2220,7 @@ swaptags(const Arg *arg)
     	if(!c->tags) c->tags = newtag;
     }
 
+    selmon->seltags ^= 1;
     selmon->tagset[selmon->seltags] = newtag;
 
     focus(NULL);
