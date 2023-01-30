@@ -18,6 +18,7 @@ Tags (Workspaces)
 -----------------
 M-number puts you into that tag number
 M-S-number moves that window into that tag
+A-S-number MSnumber and then Mnumber
 M-</> moves you left/right
 M-Tab jumps to the last selected tag / group of tags
 
