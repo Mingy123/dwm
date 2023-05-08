@@ -21,7 +21,7 @@ static const char *colors[][3]      = {
 
 /* fade inactive */
 static const double activeopacity   = 1.0f;     /* Window opacity when it's focused (0 <= opacity <= 1) */
-static const double inactiveopacity = 0.90f;   /* Window opacity when it's inactive (0 <= opacity <= 1) */
+static const double inactiveopacity = 0.85f;   /* Window opacity when it's inactive (0 <= opacity <= 1) */
 static Bool bUseOpacity = True;     /* Starts with opacity on any unfocused windows */
 
 /* tagging */
@@ -71,7 +71,7 @@ static const Layout layouts[] = {
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char* termcmd[] = {"terminator", NULL};
+static const char* termcmd[] = {"urxvt", NULL};
 
 static const char* lowerBri[] = {"/scripts/bri_down.sh", NULL};
 static const char* raiseBri[] = {"/scripts/bri_up.sh", NULL};
@@ -85,7 +85,7 @@ static Key keys[] = {
     /* modifier                 key             function        argument */
     { MODKEY,                   XK_p,           spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,         XK_Return,      spawn,          {.v = termcmd} },
-    { ALTKEY|ShiftMask,         XK_Return,      spawn,          SHCMD("urxvt") },
+    { ALTKEY|ShiftMask,         XK_Return,      spawn,          SHCMD("terminator") },
     { MODKEY,                   XK_j,           focusstack,     {.i = +1 } },
     { MODKEY,                   XK_k,           focusstack,     {.i = -1 } },
     { MODKEY|ShiftMask,         XK_j,           movestack,      {.i = +1 } },
@@ -111,8 +111,8 @@ static Key keys[] = {
     { MODKEY,                   XK_o,           lockopacity,    {0} },
     { MODKEY|ShiftMask,         XK_o,           toggleopacity,  {0} },
     { MODKEY|ShiftMask,         XK_BackSpace,   maketiled,      {0} },
-    { MODKEY,                   XK_r,           togglelockfs,   {0} },
-    { MODKEY|ShiftMask,         XK_r,           togglefakefs,   {0} },
+    { MODKEY,                   XK_r,           togglefakefs,   {0} },
+    { MODKEY|ShiftMask,         XK_r,           togglelockfs,   {0} },
 
     { ALTKEY,                   XK_comma,       focusmon,       {.i = -1 } },
     { ALTKEY,                   XK_period,      focusmon,       {.i = +1 } },
