@@ -136,6 +136,8 @@ static Key keys[] = {
     { 0,           XF86XK_AudioMute,            spawn,          SHCMD("amixer set Master toggle > /dev/null") },
     { 0,           XF86XK_MonBrightnessUp,      spawn,          {.v = raiseBri} },
     { 0,           XF86XK_MonBrightnessDown,    spawn,          {.v = lowerBri} },
+    { ShiftMask,   XF86XK_MonBrightnessUp,      spawn,          {.v = raiseRed} },
+    { ShiftMask,   XF86XK_MonBrightnessDown,    spawn,          {.v = lowerRed} },
     { ShiftMask,                XK_F3,          spawn,          {.v = raiseRed} },
     { ShiftMask,                XK_F2,          spawn,          {.v = lowerRed} },
     { ShiftMask,                XK_F6,          spawn,          SHCMD("killall mpv") },
