@@ -58,6 +58,7 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define ALTKEY Mod1Mask
+#define MDSW Mod2Mask
 #define TAGKEYS(KEY,TAG) \
     { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -116,6 +117,8 @@ static Key keys[] = {
 
     { ALTKEY,                   XK_comma,       focusmon,       {.i = -1 } },
     { ALTKEY,                   XK_period,      focusmon,       {.i = +1 } },
+    { ALTKEY,                   XK_k,           focusmon,       {.i = -1 } },
+    { ALTKEY,                   XK_j,           focusmon,       {.i = +1 } },
     { ALTKEY|ShiftMask,         XK_comma,       tagmon,         {.i = -1 } },
     { ALTKEY|ShiftMask,         XK_period,      tagmon,         {.i = +1 } },
     { ALTKEY,                   XK_Tab,         focusmon,       {.i = +1 } },
@@ -131,6 +134,9 @@ static Key keys[] = {
     { ControlMask|ShiftMask,    XK_l,           spawn,          SHCMD("betterlockscreen -l dimblur") },
     { MODKEY|ShiftMask,         XK_l,           spawn,          SHCMD("loginctl suspend") },
 
+    { MDSW,        XF86XK_AudioLowerVolume,     spawn,          SHCMD("amixer set Master 2%- unmute > /dev/null") },
+    { MDSW,        XF86XK_AudioRaiseVolume,     spawn,          SHCMD("amixer set Master 2%+ unmute > /dev/null") },
+    { MDSW,        XF86XK_AudioMute,            spawn,          SHCMD("amixer set Master toggle > /dev/null") },
     { 0,           XF86XK_AudioLowerVolume,     spawn,          SHCMD("amixer set Master 2%- unmute > /dev/null") },
     { 0,           XF86XK_AudioRaiseVolume,     spawn,          SHCMD("amixer set Master 2%+ unmute > /dev/null") },
     { 0,           XF86XK_AudioMute,            spawn,          SHCMD("amixer set Master toggle > /dev/null") },
