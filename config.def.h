@@ -182,6 +182,7 @@ static Button buttons[] = {
     { ClkRootWin,           0,              Button1,        spawn,          {.v = termcmd } },
     { ClkRootWin,           0,              Button3,        spawn,          SHCMD("brave &> /dev/null") },
     { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+    { ClkClientWin,         MODKEY,         Button2,        maketiled,      {0} },
     { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
     { ClkTagBar,            0,              Button1,        view,           {0} },
     { ClkTagBar,            0,              Button3,        toggleview,     {0} },
@@ -189,5 +190,17 @@ static Button buttons[] = {
     { ClkTagBar,            0,              Button9,        toggletag,      {0} },
     { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
     { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-};
 
+    { ClkClientWin,         0,              Button8,        shiftview,      { .i = -1 } },
+    { ClkClientWin,         0,              Button9,        shiftview,      { .i = +1 } },
+    { ClkClientWin,         MODKEY,         Button8,        shiftview,      { .i = -1 } },
+    { ClkClientWin,         MODKEY,         Button9,        shiftview,      { .i = +1 } },
+    { ClkClientWin,         ALTKEY,         Button8,        focusmon,       { .i = -1 } },
+    { ClkClientWin,         ALTKEY,         Button9,        focusmon,       { .i = +1 } },
+    { ClkRootWin,           0,              Button8,        shiftview,      { .i = -1 } },
+    { ClkRootWin,           0,              Button9,        shiftview,      { .i = +1 } },
+    { ClkRootWin,           MODKEY,         Button8,        shiftview,      { .i = -1 } },
+    { ClkRootWin,           MODKEY,         Button9,        shiftview,      { .i = +1 } },
+    { ClkRootWin,           ALTKEY,         Button8,        focusmon,       { .i = -1 } },
+    { ClkRootWin,           ALTKEY,         Button9,        focusmon,       { .i = +1 } },
+};
