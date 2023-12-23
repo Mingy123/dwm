@@ -1,37 +1,42 @@
 /* See LICENSE file for copyright and license details. */
 
 /* interval between updates (in ms) */
-const unsigned int interval = 10000;
+const unsigned int interval = 250;
 
 /* text to show if no value can be retrieved */
-static const char unknown_str[] = "";
-
-/* maximum output string length */
-#define MAXLEN 30
+static const char unknown_str[] = "n/a";
+static const char interface[] = "wlan0";
 
 static const struct arg args[] = {
-	/* function format          argument */
+    /* function format          argument */
+    //{ cpu_perc, "%s ", NULL},
+    { ram_free, "\uf538 %s ", NULL},
     { battery_state, "%s ", NULL},
     { battery_perc, "%s ", NULL},
-    { wifi, "%s ", NULL},
-	{ datetime, "%s", "%d %a %I:%M %p" },
+    //{ netspeed_rx, "%s ", interface},
+    //{ netspeed_tx, "%s ", interface},
+    { vol_icon, "%s ", NULL},
+    { vol_amixer, "%s ", NULL},
+    { wifi, "%s ", interface},
+    { ipv4_clean, "%s", interface},
+    { datetime, "\uf073 %s", "%d %a %I:%M %p" },
 };
+
+/* maximum output string length */
+#define MAXLEN 128
 
 /*
  * function            description                     argument (example)
  *
- * battery_perc        battery percentage              battery name (BAT0)
- *                                                     NULL on OpenBSD/FreeBSD
- * battery_state       battery charging state          battery name (BAT0)
- *                                                     NULL on OpenBSD/FreeBSD
- * battery_remaining   battery remaining HH:MM         battery name (BAT0)
- *                                                     NULL on OpenBSD/FreeBSD
- * cpu_perc            cpu usage in percent            NULL
+ * battery_perc        battery percentage              NULL
+ * battery_state       battery charging state          NULL
+ * cat                 read arbitrary file             path
  * cpu_freq            cpu frequency in MHz            NULL
+ * cpu_perc            cpu usage in percent            NULL
  * datetime            date and time                   format string (%F %T)
  * disk_free           free disk space in GB           mountpoint path (/)
  * disk_perc           disk usage in percent           mountpoint path (/)
- * disk_total          total disk space in GB          mountpoint path (/")
+ * disk_total          total disk space in GB          mountpoint path (/)
  * disk_used           used disk space in GB           mountpoint path (/)
  * entropy             available entropy               NULL
  * gid                 GID of current user             NULL
@@ -48,12 +53,11 @@ static const struct arg args[] = {
  * netspeed_tx         transfer network speed          interface name (wlan0)
  * num_files           number of files in a directory  path
  *                                                     (/home/foo/Inbox/cur)
- * ram_free            free memory in GB               NULL
+ * ram_free            free memory in MB               NULL
  * ram_perc            memory usage in percent         NULL
  * ram_total           total memory size in GB         NULL
  * ram_used            used memory in GB               NULL
  * run_command         custom shell command            command (echo foo)
- * separator           string to echo                  NULL
  * swap_free           free swap in GB                 NULL
  * swap_perc           swap usage in percent           NULL
  * swap_total          total swap size in GB           NULL
@@ -67,7 +71,7 @@ static const struct arg args[] = {
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
- *                                                     NULL on OpenBSD
- * wifi_perc           WiFi signal in percent          interface name (wlan0)
+ *                                                     NULL on OpenBSD/FreeBSD
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
+ * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */

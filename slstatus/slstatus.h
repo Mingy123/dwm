@@ -1,60 +1,87 @@
-const char* datetime(const char *fmt) {
-	time_t t;
-	t = time(NULL);
-	if (!strftime(buf, sizeof(buf), fmt, localtime(&t))) {
-		warn("strftime: Result string exceeds buffer size");
-		return NULL;
-	}
+/* See LICENSE file for copyright and license details. */
 
-	return buf;
-}
+/* battery */
+const char *battery_perc();
+const char *battery_state();
 
-// 1 - not charging
-int checkCharge() {
-    FILE* f = popen("acpi | grep -v unavailable | grep Discharging | wc -l", "r");
-    char c;
-    fscanf(f, "%c", &c);
-    pclose(f);
-    return c-48;
-}
+/* cat */
+const char *cat(const char *path);
 
-const char* battery_perc() {
-	char *p;
-	FILE *fp;
-    char* cmd = "acpi | grep -v unavailable | grep -o \"[0-9]*%\"";
+/* cpu */
+const char *cpu_freq(const char *unused);
+const char *cpu_perc(const char *unused);
 
-	if (!(fp = popen(cmd, "r"))) {
-		warn("popen '%s':", cmd);
-		return NULL;
-	} p = fgets(buf, sizeof(buf) - 1, fp);
-	if (pclose(fp) < 0) {
-		warn("pclose '%s':", cmd);
-		return NULL;
-	} if (!p) {
-		return NULL;
-	} if ((p = strrchr(buf, '\n'))) {
-		p[0] = '\0';
-	}
+/* datetime */
+const char *datetime(const char *fmt);
 
-	return buf[0] ? buf : NULL;
-}
+/* disk */
+const char *disk_free(const char *path);
+const char *disk_perc(const char *path);
+const char *disk_total(const char *path);
+const char *disk_used(const char *path);
 
-const char* battery_state() {
-    const char* disp = battery_perc();
-    int batt = atoi(disp);
+/* entropy */
+const char *entropy(const char *unused);
 
-    if (!checkCharge()) return "\uf376";
-    if (batt > 80) return "\uf240";
-    if (batt > 60) return "\uf241";
-    if (batt > 40) return "\uf242";
-    if (batt > 20) return "\uf243";
-    return "\uf244";
-}
+/* hostname */
+const char *hostname(const char *unused);
 
-const char* wifi() {
-    FILE* f = popen("ip a | grep wlan0 | grep ' UP ' | wc -l", "r");
-    char c = getc(f);
-    pclose(f);
-    if (c != '0') return "\uf1eb";
-    return "\ue2cf";
-}
+/* ip */
+const char *ipv4(const char *interface);
+const char *ipv4_clean(const char *interface);
+const char *ipv6(const char *interface);
+
+/* kernel_release */
+const char *kernel_release(const char *unused);
+
+/* keyboard_indicators */
+const char *keyboard_indicators(const char *fmt);
+
+/* keymap */
+const char *keymap(const char *unused);
+
+/* load_avg */
+const char *load_avg(const char *unused);
+
+/* netspeeds */
+const char *netspeed_rx(const char *interface);
+const char *netspeed_tx(const char *interface);
+
+/* num_files */
+const char *num_files(const char *path);
+
+/* ram */
+const char *ram_free(const char *unused);
+const char *ram_perc(const char *unused);
+const char *ram_total(const char *unused);
+const char *ram_used(const char *unused);
+
+/* run_command */
+const char *run_command(const char *cmd);
+
+/* swap */
+const char *swap_free(const char *unused);
+const char *swap_perc(const char *unused);
+const char *swap_total(const char *unused);
+const char *swap_used(const char *unused);
+
+/* temperature */
+const char *temp(const char *);
+
+/* uptime */
+const char *uptime(const char *unused);
+
+/* user */
+const char *gid(const char *unused);
+const char *uid(const char *unused);
+const char *username(const char *unused);
+
+/* volume */
+const char *vol_icon(const char *card);
+const char *vol_perc(const char *card);
+const char *vol_amixer(const char *card);
+
+/* wifi */
+const char *wifi_essid(const char *interface);
+const char *wifi_perc(const char *interface);
+const char *wifi(const char *interface);

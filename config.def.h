@@ -26,7 +26,7 @@ static Bool bUseOpacity = True;     /* Starts with opacity on any unfocused wind
 
 /* tagging */
 // fontawesome 6.2: f8ab -> cassette (tag 9)
-static const char *tags[] = { "\uf6ad", "\uf1a0", "\uf630", "\uf126", "\uf108", "\uf6e2", "\uf233", "\ue236", "\uf8ab" };
+static const char *tags[] = { "\uf6ad", "\uf1a0", "\uf126", "\uf233", "\uf108", "\uf6e2", "\uf630", "\ue236", "\uf8ab" };
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -58,7 +58,6 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define ALTKEY Mod1Mask
-#define MDSW Mod2Mask
 #define TAGKEYS(KEY,TAG) \
     { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -124,19 +123,17 @@ static Key keys[] = {
     { ALTKEY,                   XK_Tab,         focusmon,       {.i = +1 } },
     { ALTKEY|ShiftMask,         XK_Tab,         tagmon,         {.i = +1 } },
 
-    { 0,                        XK_Print,       spawn,          SHCMD("scrot -o ~/Downloads/scrot.png") },
-    { ShiftMask,                XK_Print,       spawn,          SHCMD("scrot -u -o ~/Downloads/scrot.png") },
-    { MODKEY|ShiftMask,         XK_s,           spawn,          SHCMD("scrot -s -i -f -o ~/Downloads/scrot.png") },
+    { 0,                        XK_Print,       spawn,          SHCMD("/scripts/screenshot") },
+    { ShiftMask,                XK_Print,       spawn,          SHCMD("/scripts/screenshot -u") },
+    { MODKEY|ShiftMask,         XK_s,           spawn,          SHCMD("/scripts/screenshot -s -i -f") },
 
     { MODKEY,                   XK_c,           spawn,          SHCMD("hexpicker") },
     { MODKEY,                   XK_b,           spawn,          SHCMD("brave &> /dev/null") },
     { MODKEY,                   XK_e,           spawn,          SHCMD("pcmanfm") },
     { ControlMask|ShiftMask,    XK_l,           spawn,          SHCMD("betterlockscreen -l dimblur") },
     { MODKEY|ShiftMask,         XK_l,           spawn,          SHCMD("loginctl suspend") },
+    { MODKEY|ShiftMask,         XK_m,           spawn,          SHCMD("/scripts/remap.sh") },
 
-    { MDSW,        XF86XK_AudioLowerVolume,     spawn,          SHCMD("amixer set Master 2%- unmute > /dev/null") },
-    { MDSW,        XF86XK_AudioRaiseVolume,     spawn,          SHCMD("amixer set Master 2%+ unmute > /dev/null") },
-    { MDSW,        XF86XK_AudioMute,            spawn,          SHCMD("amixer set Master toggle > /dev/null") },
     { 0,           XF86XK_AudioLowerVolume,     spawn,          SHCMD("amixer set Master 2%- unmute > /dev/null") },
     { 0,           XF86XK_AudioRaiseVolume,     spawn,          SHCMD("amixer set Master 2%+ unmute > /dev/null") },
     { 0,           XF86XK_AudioMute,            spawn,          SHCMD("amixer set Master toggle > /dev/null") },
@@ -179,8 +176,6 @@ static Button buttons[] = {
     { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
     { ClkWinTitle,          0,              Button2,        zoom,           {0} },
     { ClkWinTitle,          0,              Button8,        zoom,           {0} },
-    { ClkRootWin,           0,              Button1,        spawn,          {.v = termcmd } },
-    { ClkRootWin,           0,              Button3,        spawn,          SHCMD("brave &> /dev/null") },
     { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
     { ClkClientWin,         MODKEY,         Button2,        maketiled,      {0} },
     { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
@@ -191,16 +186,15 @@ static Button buttons[] = {
     { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
     { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 
-    { ClkClientWin,         0,              Button8,        shiftview,      { .i = -1 } },
-    { ClkClientWin,         0,              Button9,        shiftview,      { .i = +1 } },
     { ClkClientWin,         MODKEY,         Button8,        shiftview,      { .i = -1 } },
     { ClkClientWin,         MODKEY,         Button9,        shiftview,      { .i = +1 } },
-    { ClkClientWin,         ALTKEY,         Button8,        focusmon,       { .i = -1 } },
-    { ClkClientWin,         ALTKEY,         Button9,        focusmon,       { .i = +1 } },
+    { ClkClientWin,         ALTKEY,         Button8,        tagmon,         { .i = -1 } },
+    { ClkClientWin,         ALTKEY,         Button9,        tagmon,         { .i = +1 } },
+
     { ClkRootWin,           0,              Button8,        shiftview,      { .i = -1 } },
     { ClkRootWin,           0,              Button9,        shiftview,      { .i = +1 } },
     { ClkRootWin,           MODKEY,         Button8,        shiftview,      { .i = -1 } },
     { ClkRootWin,           MODKEY,         Button9,        shiftview,      { .i = +1 } },
-    { ClkRootWin,           ALTKEY,         Button8,        focusmon,       { .i = -1 } },
-    { ClkRootWin,           ALTKEY,         Button9,        focusmon,       { .i = +1 } },
+    { ClkRootWin,           ALTKEY,         Button8,        tagmon,         { .i = -1 } },
+    { ClkRootWin,           ALTKEY,         Button9,        tagmon,         { .i = +1 } },
 };
