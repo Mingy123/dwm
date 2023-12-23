@@ -29,6 +29,7 @@ const char *hostname(const char *unused);
 /* ip */
 const char *ipv4(const char *interface);
 const char *ipv4_clean(const char *interface);
+const char *ipv4_clean_short(const char *interface);
 const char *ipv6(const char *interface);
 
 /* kernel_release */

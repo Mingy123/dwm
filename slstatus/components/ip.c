@@ -54,13 +54,19 @@ ipv4(const char *interface)
     return ip(interface, AF_INET);
 }
 
-char* ipv4_shorten(const char* addr) {
+const char* ipv4_shorten(const char* addr) {
     char* first = strchr(addr, '.');
     char* second = strchr(first+1, '.');
     size_t len = strlen(second);
-    char buf[len+1+1]; // for null and prepending stuff
-    buf[0] = '*';
-    strcpy(buf+1, second);
+#define PREPEND ""
+    size_t PREPEND_LEN = strlen(PREPEND);
+    char buf[len+1+PREPEND_LEN];
+    if (PREPEND_LEN > 0) {
+        strcpy(buf, PREPEND);
+        strcat(buf, second);
+    } else {
+        strcpy(buf, second);
+    }
     return bprintf("%s", buf);
 }
 
@@ -71,7 +77,7 @@ ipv4_clean_short(const char *interface)
     if (ans == NULL) {
         return "";
     }
-    char* shortened = ipv4_shorten(ans);
+    const char* shortened = ipv4_shorten(ans);
     size_t len = strlen(shortened);
     char buf[len+1+1]; // for null and space
     char* end = stpcpy(buf, shortened);
