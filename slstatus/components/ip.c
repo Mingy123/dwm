@@ -56,13 +56,13 @@ ipv4(const char *interface)
 
 const char* ipv4_shorten(const char* addr) {
     char* first = strchr(addr, '.');
-    char* second = strchr(first+1, '.');
+    char* second = strchr(first+1, '.') + 1;
     size_t len = strlen(second);
-#define PREPEND ""
-    size_t PREPEND_LEN = strlen(PREPEND);
-    char buf[len+1+PREPEND_LEN];
-    if (PREPEND_LEN > 0) {
-        strcpy(buf, PREPEND);
+#define PREFIX "."
+    size_t PREFIX_LEN = strlen(PREFIX);
+    char buf[len+1+PREFIX_LEN];
+    if (PREFIX_LEN > 0) {
+        strcpy(buf, PREFIX);
         strcat(buf, second);
     } else {
         strcpy(buf, second);

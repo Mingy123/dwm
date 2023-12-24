@@ -22,7 +22,7 @@ const char* vol_icon(const char* unused) {
 const char* vol_amixer(const char* unused) {
     FILE* f = popen(magic_amixer, "r");
     char buf[4];
-    fgets(buf, 4, f);
+    fscanf(f, "%3s", buf);
     pclose(f);
     return bprintf("%s", buf);
 }
