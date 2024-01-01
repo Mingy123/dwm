@@ -18,7 +18,7 @@ static const struct arg args[] = {
     { vol_icon, "%s ", NULL},
     { vol_amixer, "%s ", NULL},
     { wifi, "%s ", interface},
-    { ipv4_clean_short, "%s", interface},
+    //{ ipv4_clean_short, "%s", interface},
     { datetime, "\uf073 %s", "%d %a %I:%M %p" },
 };
 
