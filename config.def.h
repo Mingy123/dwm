@@ -71,6 +71,7 @@ static const Layout layouts[] = {
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char* dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char* dlaunchercmd[] = { "dlauncher-toggle", NULL };
 static const char* termcmd[] = {"urxvt", NULL};
 
 static const char* lowerBri[] = {"/scripts/bri_down.sh", NULL};
@@ -83,7 +84,8 @@ static const char* raiseRed[] = {"/scripts/red-up.sh", NULL};
 #include "shiftview.c"
 static Key keys[] = {
     /* modifier                 key             function        argument */
-    { MODKEY,                   XK_p,           spawn,          {.v = dmenucmd } },
+    { MODKEY,                   XK_p,           spawn,          {.v = dlaunchercmd } },
+    { MODKEY|ShiftMask,         XK_p,           spawn,          {.v = dmenucmd } },
     { MODKEY|ShiftMask,         XK_Return,      spawn,          {.v = termcmd} },
     { ALTKEY|ShiftMask,         XK_Return,      spawn,          SHCMD("terminator") },
     { MODKEY,                   XK_j,           focusstack,     {.i = +1 } },
@@ -118,10 +120,11 @@ static Key keys[] = {
     { ALTKEY,                   XK_period,      focusmon,       {.i = +1 } },
     { ALTKEY,                   XK_k,           focusmon,       {.i = -1 } },
     { ALTKEY,                   XK_j,           focusmon,       {.i = +1 } },
+    { ALTKEY,                   XK_Tab,         focusmon,       {.i = +1 } },
     { ALTKEY|ShiftMask,         XK_comma,       tagmon,         {.i = -1 } },
     { ALTKEY|ShiftMask,         XK_period,      tagmon,         {.i = +1 } },
-    { ALTKEY,                   XK_Tab,         focusmon,       {.i = +1 } },
     { ALTKEY|ShiftMask,         XK_Tab,         tagmon,         {.i = +1 } },
+    { ALTKEY|ControlMask,       XK_Tab,         swapmon,        {0} },
 
     { 0,                        XK_Print,       spawn,          SHCMD("/scripts/screenshot") },
     { ShiftMask,                XK_Print,       spawn,          SHCMD("/scripts/screenshot -u") },

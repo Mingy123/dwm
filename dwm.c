@@ -211,6 +211,7 @@ static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
 static void sigchld(int unused);
 static void spawn(const Arg *arg);
+static void swapmon(const Arg *arg);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tagmove(const Arg *arg);
@@ -1448,8 +1449,8 @@ sendmon(Client *c, Monitor *m)
     detachstack(c);
     c->mon = m;
     c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
-    attach(c);
-    attachstack(c);
+    attach(c); // put it into mon->clients at the start of the linked list
+    attachstack(c); // also put it at the start of mon->clients linked list
     focus(NULL);
     arrange(NULL);
 }
@@ -1687,6 +1688,42 @@ spawn(const Arg *arg)
     	fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[0]);
     	perror(" failed");
     	exit(EXIT_SUCCESS);
+    }
+}
+
+// swap contents of a monitor with the next
+void swapmon(const Arg *arg) {
+    // move all of selmon->sel to the other monitor
+    Monitor* next;
+    if (selmon->next) {
+        next = selmon->next;
+    } else {
+        next = mons;
+    }
+    if (selmon == next) return;
+
+    Client* nextmon_store = next->stack;
+    Client* cur;
+    Client* cnext;
+
+    // if the tags on a client has anything outside of what is selected on the monitor, do not send
+
+    cur = selmon->stack;
+    unsigned int seltags = selmon->tagset[selmon->seltags];
+    while (cur) {
+        cnext = cur->snext;
+        if (( (cur->tags & (~seltags)) ) == 0)
+            sendmon(cur, next);
+        cur = cnext;
+    }
+
+    cur = nextmon_store;
+    seltags = next->tagset[next->seltags];
+    while (cur) {
+        cnext = cur->snext;
+        if ((cur->tags & (~seltags)) == 0)
+            sendmon(cur, selmon);
+        cur = cnext;
     }
 }
 
