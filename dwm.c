@@ -1013,6 +1013,8 @@ killclient(const Arg *arg)
 {
     if (!selmon->sel)
     	return;
+    if (strcasestr(selmon->sel->name, "Dlauncher") != 0)
+        return;
     if (!sendevent(selmon->sel, wmatom[WMDelete])) {
     	XGrabServer(dpy);
     	XSetErrorHandler(xerrordummy);

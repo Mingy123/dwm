@@ -8,7 +8,7 @@
 #include "../slstatus.h"
 #include "../util.h"
 
-static const char magic_amixer[] = "amixer get Master | awk '{print $5}' | grep -E '\\[[0-9]+%\\]' | awk -F'[^0-9]+' 'NR==1 {print $2\"%\"}'";
+static const char magic_amixer[] = "amixer get Master | awk '{print $5}' | grep -E '\\[[0-9]+%\\]' | awk -F'[^0-9]+' 'NR==1 {print $2}'";
 static const char magic_icon[] = "amixer get Master | awk '{print $6}' | grep -q '\\[on\\]' && echo \"1\" || echo \"0\"";
 
 const char* vol_icon(const char* unused) {

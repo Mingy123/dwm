@@ -147,6 +147,7 @@ static Key keys[] = {
     { ShiftMask,                XK_F3,          spawn,          {.v = raiseRed} },
     { ShiftMask,                XK_F2,          spawn,          {.v = lowerRed} },
     { ShiftMask,                XK_F6,          spawn,          SHCMD("killall mpv") },
+    { ShiftMask,     XF86XK_AudioMute,          spawn,          SHCMD("killall mpv") },
 
     TAGKEYS(                        XK_1,                      0)
     TAGKEYS(                        XK_2,                      1)
@@ -168,6 +169,10 @@ ClkWinTitle - App title text in bar
 ClkClientWin - clicking in an app window
 ClkRootWin - The empty monitor??
 */
+
+#define ScrollUp    4
+#define ScrollDown  5
+
 #define Button6     6
 #define Button7     7
 #define Button8     8
@@ -189,10 +194,10 @@ static Button buttons[] = {
     { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
     { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 
-    { ClkClientWin,         MODKEY,         Button8,        shiftview,      { .i = -1 } },
-    { ClkClientWin,         MODKEY,         Button9,        shiftview,      { .i = +1 } },
-    { ClkClientWin,         ALTKEY,         Button8,        tagmon,         { .i = -1 } },
-    { ClkClientWin,         ALTKEY,         Button9,        tagmon,         { .i = +1 } },
+    { ClkClientWin,         MODKEY,         ScrollUp,       shiftview,      { .i = -1 } },
+    { ClkClientWin,         MODKEY,         ScrollDown,     shiftview,      { .i = +1 } },
+    { ClkRootWin,           MODKEY,         ScrollUp,       shiftview,      { .i = -1 } },
+    { ClkRootWin,           MODKEY,         ScrollDown,     shiftview,      { .i = +1 } },
 
     { ClkRootWin,           0,              Button8,        shiftview,      { .i = -1 } },
     { ClkRootWin,           0,              Button9,        shiftview,      { .i = +1 } },

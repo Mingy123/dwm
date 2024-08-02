@@ -18,24 +18,34 @@ int checkCharge() {
 }
 
 const char* battery_perc() {
-    char *p;
+    char *output;
     FILE *fp;
     char* cmd = "acpi | grep -v unavailable | grep -o \"[0-9]*%\"";
 
     if (!(fp = popen(cmd, "r"))) {
         warn("popen '%s':", cmd);
         return NULL;
-    } p = fgets(buf, sizeof(buf) - 1, fp);
+    }
+    output = fgets(buf, sizeof(buf) - 1, fp);
+
     if (pclose(fp) < 0) {
         warn("pclose '%s':", cmd);
         return NULL;
-    } if (!p) {
-        return NULL;
-    } if ((p = strrchr(buf, '\n'))) {
-        p[0] = '\0';
     }
 
-    return buf[0] ? buf : NULL;
+    if (!output)
+        return NULL;
+
+    if ((output = strrchr(buf, '\n'))) {
+        output[0] = '\0';
+    }
+
+    if (!buf)
+        return NULL;
+
+    *strchrnul(buf, '%') = '\0';
+
+    return buf;
 }
 
 const char* battery_state() {
