@@ -13,7 +13,7 @@ int main(void) {
 
     d = XOpenDisplay(NULL);
     if (!d)
-    	exit(1);
+        exit(1);
     r = DefaultRootWindow(d);
 
     f = XCreateSimpleWindow(d, r, 100, 100, 400, 400, 0, 0, 0);
@@ -25,16 +25,16 @@ int main(void) {
 
     XSelectInput(d, f, ExposureMask);
     while (1) {
-    	XNextEvent(d, &e);
+        XNextEvent(d, &e);
 
-    	if (t == None) {
-    		sleep(5);
-    		t = XCreateSimpleWindow(d, r, 50, 50, 100, 100, 0, 0, 0);
-    		XSetTransientForHint(d, t, f);
-    		XStoreName(d, t, "transient");
-    		XMapWindow(d, t);
-    		XSelectInput(d, t, ExposureMask);
-    	}
+        if (t == None) {
+            sleep(5);
+            t = XCreateSimpleWindow(d, r, 50, 50, 100, 100, 0, 0, 0);
+            XSetTransientForHint(d, t, f);
+            XStoreName(d, t, "transient");
+            XMapWindow(d, t);
+            XSelectInput(d, t, ExposureMask);
+        }
     }
 
     XCloseDisplay(d);

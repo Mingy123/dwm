@@ -8,8 +8,8 @@
 #include "../slstatus.h"
 #include "../util.h"
 
-static const char magic_amixer[] = "amixer get Master | awk '{print $5}' | grep -E '\\[[0-9]+%\\]' | awk -F'[^0-9]+' 'NR==1 {print $2}'";
-static const char magic_icon[] = "amixer get Master | awk '{print $6}' | grep -q '\\[on\\]' && echo \"1\" || echo \"0\"";
+static const char magic_amixer[] = "amixer get Master 2> /dev/null | awk '{print $5}' | grep -E '\\[[0-9]+%\\]' | awk -F'[^0-9]+' 'NR==1 {print $2}'";
+static const char magic_icon[] = "amixer get Master 2> /dev/null | awk '{print $6}' | grep -q '\\[on\\]' && echo \"1\" || echo \"0\"";
 
 const char* vol_icon(const char* unused) {
     FILE* f = popen(magic_icon, "r");
@@ -21,9 +21,12 @@ const char* vol_icon(const char* unused) {
 
 const char* vol_amixer(const char* unused) {
     FILE* f = popen(magic_amixer, "r");
-    char buf[4];
+    char buf[16];
     fscanf(f, "%3s", buf);
     pclose(f);
+    if (buf[0] == 0x30) {
+        return "err";
+    }
     return bprintf("%s", buf);
 }
 

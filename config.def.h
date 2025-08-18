@@ -30,8 +30,8 @@ static const char *tags[] = { "\uf6ad", "\uf1a0", "\uf126", "\uf233", "\uf108", 
 
 static const Rule rules[] = {
     /* xprop(1):
-     *	WM_CLASS(STRING) = instance, class
-     *	WM_NAME(STRING) = title
+     *    WM_CLASS(STRING) = instance, class
+     *    WM_NAME(STRING) = title
      */
     /* class      instance    title             tags mask     isfloating   monitor */
     { "Gimp",     NULL,       NULL,             0,            1,           -1 },
@@ -198,6 +198,12 @@ static Button buttons[] = {
     { ClkClientWin,         MODKEY,         ScrollDown,     shiftview,      { .i = +1 } },
     { ClkRootWin,           MODKEY,         ScrollUp,       shiftview,      { .i = -1 } },
     { ClkRootWin,           MODKEY,         ScrollDown,     shiftview,      { .i = +1 } },
+    { ClkTagBar,            0,              ScrollUp,       shiftview,      { .i = -1 } },
+    { ClkTagBar,            0,              ScrollDown,     shiftview,      { .i = +1 } },
+    { ClkLtSymbol,          0,              ScrollUp,       shiftview,      { .i = -1 } },
+    { ClkLtSymbol,          0,              ScrollDown,     shiftview,      { .i = +1 } },
+    { ClkStatusText,        0,              ScrollUp,       shiftview,      { .i = -1 } },
+    { ClkStatusText,        0,              ScrollDown,     shiftview,      { .i = +1 } },
 
     { ClkRootWin,           0,              Button8,        shiftview,      { .i = -1 } },
     { ClkRootWin,           0,              Button9,        shiftview,      { .i = +1 } },
