@@ -25,6 +25,11 @@ shiftviewbusy(const Arg *arg) {
     shifted.ui = selmon->tagset[selmon->seltags];
     Arg original;
     original.ui = shifted.ui;
+    unsigned int occupied = 0;
+
+    for (Client *c = selmon->clients; c != NULL; c = c->next) {
+        occupied |= c->tags;
+    }
 
     while (1) {
         if(arg->i > 0) // left circular shift
@@ -40,12 +45,9 @@ shiftviewbusy(const Arg *arg) {
             return;
         }
 
-        for (Client *c = selmon->clients; c != NULL; c = c->next) {
-            if (c->tags & shifted.ui) {
-                // there is a window in the new tagset
-                view(&shifted);
-                return;
-            }
+        if (occupied & shifted.ui) {
+            view(&shifted);
+            return;
         }
     }
 }
